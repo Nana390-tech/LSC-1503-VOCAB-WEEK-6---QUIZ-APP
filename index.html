@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>LSC 1503 Weeks 6 and 7: Key Language for Interviews</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:#EEF1FB}
+body{font-family:"Segoe UI","Trebuchet MS",Tahoma,Arial,sans-serif;color:#1A2038;line-height:1.55;font-size:17px}
+button{font-family:inherit;font-size:inherit;cursor:pointer}
+button:focus,input:focus{outline:3px solid #12B3BF;outline-offset:2px}
+.wrap{max-width:860px;margin:0 auto;padding:0 18px}
+.hidden{display:none !important}
+
+#jsError{background:#FFE3DE;border:2px solid #D8452C;color:#7A1E10;padding:14px 18px;margin:14px auto;max-width:820px;border-radius:10px;font-weight:600}
+
+.hero{background:#1F2668;color:#fff;padding:26px 0 30px;border-bottom:8px solid #12B3BF}
+.course{font-size:14px;color:#B9C2F0;margin-bottom:4px}
+.hero h1{font-family:"Trebuchet MS","Segoe UI",sans-serif;font-size:34px;line-height:1.15;font-weight:800;letter-spacing:-0.5px}
+.hero .sub{color:#D7DCF7;margin-top:6px;font-size:16px;max-width:620px}
+.room{margin-top:22px;background:#2A3480;border-radius:14px;padding:18px}
+.room .inst{font-size:15px;color:#C6CDF3;margin-bottom:10px}
+.qchip{background:#1F2668;border:2px solid #4A57B8;color:#fff;border-radius:22px;padding:8px 14px;font-size:15px;margin:0 6px 8px 0;text-align:left}
+.qchip:hover{border-color:#12B3BF}
+.qchip.on{background:#12B3BF;border-color:#12B3BF;color:#06282C;font-weight:800}
+.answer{margin-top:10px;background:#EEF1FB;color:#1A2038;border-radius:10px;padding:12px 14px;font-size:16px;min-height:60px}
+.answer .who{display:block;font-size:13px;font-weight:800;color:#0E8F9B;margin-bottom:2px}
+.answer b{background:#CFF3F6;border-radius:5px;padding:0 4px}
+
+.card{background:#fff;border-radius:16px;padding:22px;margin:22px 0;border:2px solid #D3DAF3}
+.card h2{font-size:22px;margin-bottom:6px;color:#1F2668}
+.row{display:flex;flex-wrap:wrap;gap:12px;margin-top:12px}
+.field{flex:1 1 220px}
+.field label{display:block;font-size:14px;font-weight:700;margin-bottom:4px}
+.field input{width:100%;padding:11px 12px;border:2px solid #A7B2E6;border-radius:10px;font-size:17px;font-family:inherit}
+.btn{border:0;border-radius:12px;padding:13px 22px;font-weight:800;font-size:17px}
+.btn.main{background:#12B3BF;color:#06282C}
+.btn.main:hover{background:#0E8F9B;color:#fff}
+.btn.alt{background:#2A3480;color:#fff}
+.btn.alt:hover{background:#1F2668}
+.btn.ghost{background:#E3E8FA;color:#1F2668}
+.btn[disabled]{opacity:.45;cursor:default}
+.warn{color:#C0341B;font-weight:700;font-size:15px;margin-top:8px}
+.facts{margin-top:14px;font-size:15px;color:#4A5480}
+.facts span{display:inline-block;background:#E3E8FA;border-radius:20px;padding:4px 12px;margin:3px 6px 3px 0}
+
+.chips{margin:6px 0 14px}
+.chip{border:2px solid #2A3480;background:#fff;color:#1F2668;border-radius:20px;padding:6px 14px;font-size:15px;font-weight:700;margin:4px 6px 4px 0}
+.chip.on{background:#2A3480;color:#fff}
+.grid{display:flex;flex-wrap:wrap;margin:0 -7px}
+.fc{width:50%;padding:7px}
+@media (max-width:620px){.fc{width:100%}}
+.fcIn{width:100%;min-height:160px;border-radius:14px;border:0;text-align:left;padding:16px;display:block;position:relative;box-shadow:0 3px 0 #A7B2E6}
+.fcIn.front{background:#fff;color:#1A2038;border:2px solid #D3DAF3}
+.fcIn.back{background:#1F2668;color:#fff}
+.term{font-size:20px;font-weight:800;display:block}
+.pos{display:inline-block;font-size:13px;background:#CFF3F6;color:#06565E;border-radius:6px;padding:1px 8px;margin-top:6px}
+.wk{position:absolute;top:12px;right:12px;font-size:12px;font-weight:700;color:#0E8F9B}
+.tapNote{display:block;font-size:13px;color:#7480A8;margin-top:14px}
+.def{display:block;font-size:16px}
+.say{display:block;font-size:15px;background:#2A3480;border-radius:8px;padding:8px 10px;margin-top:10px;color:#CFF3F6}
+.say i{display:block;font-size:12px;font-style:normal;font-weight:800;color:#8FD9E0}
+.ar{display:block;direction:rtl;text-align:right;font-family:"Segoe UI",Tahoma,"Geeza Pro",Arial,sans-serif;font-size:18px;margin-top:10px;padding-top:8px;border-top:1px dashed #6C7AD8;color:#fff}
+
+.qtop{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:8px;margin-top:20px}
+.pill{background:#fff;border:2px solid #D3DAF3;border-radius:20px;padding:5px 14px;font-weight:700;font-size:15px}
+.pill.score{border-color:#12B3BF;color:#0E7A85}
+.pill.streak{border-color:#A65C1F;color:#A65C1F}
+.bar{height:12px;background:#D7DDF5;border-radius:10px;margin-top:12px;overflow:hidden}
+.bar div{height:100%;background:#12B3BF;width:0;transition:width .3s}
+.cat{display:inline-block;font-size:14px;font-weight:800;color:#fff;border-radius:8px;padding:3px 10px;margin-bottom:10px}
+.c-cv{background:#2A3480}.c-you{background:#0E8F9B}.c-values{background:#A65C1F}.c-team{background:#2E7D5B}.c-work{background:#5A4BB8}
+.qtext{font-size:19px;font-weight:600;margin-bottom:14px}
+.opt{display:block;width:100%;text-align:left;background:#F7F9FF;border:2px solid #D3DAF3;border-radius:12px;padding:12px 14px;margin:8px 0;color:#1A2038}
+.opt:hover{border-color:#2A3480}
+.opt .let{display:inline-block;width:28px;height:28px;line-height:28px;text-align:center;border-radius:50%;background:#E3E8FA;font-weight:800;margin-right:10px;color:#1F2668}
+.opt.right{background:#DDF6E8;border-color:#1E9E62}
+.opt.right .let{background:#1E9E62;color:#fff}
+.opt.wrong{background:#FFE3DE;border-color:#D8452C}
+.opt.wrong .let{background:#D8452C;color:#fff}
+.opt.locked{cursor:default}
+.hintBox{background:#FFF1E0;border-left:6px solid #E09B3D;padding:10px 14px;border-radius:8px;margin-top:10px;font-size:16px}
+.fb{margin-top:12px;border-radius:10px;padding:12px 14px;font-size:16px}
+.fb.good{background:#DDF6E8;border-left:6px solid #1E9E62}
+.fb.bad{background:#FFE3DE;border-left:6px solid #D8452C}
+.nav{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;margin-top:16px}
+.review{font-size:14px;color:#7480A8;margin-top:8px;font-weight:600}
+
+.big{font-size:52px;font-weight:900;color:#1F2668;line-height:1}
+.badges{display:flex;flex-wrap:wrap;margin:10px -6px}
+.badge{width:33.33%;padding:6px}
+@media (max-width:620px){.badge{width:50%}}
+.bIn{border-radius:14px;padding:12px;text-align:center;border:2px dashed #D3DAF3;background:#fff;color:#9AA4CC;height:100%}
+.bIn.got{border:2px solid #12B3BF;background:#E7FAFB;color:#1A2038}
+.bIn .ic{font-size:30px;display:block}
+.bIn b{display:block;font-size:15px}
+.bIn small{font-size:13px}
+.cert{border:6px double #2A3480;background:#fff;border-radius:6px;padding:28px 22px;text-align:center;margin:18px 0}
+.cert h3{font-family:Georgia,"Times New Roman",serif;font-size:30px;color:#1F2668}
+.cert .nm{font-family:Georgia,"Times New Roman",serif;font-size:32px;color:#0E7A85;border-bottom:2px solid #12B3BF;display:inline-block;padding:0 20px 4px;margin:10px 0}
+.cert p{margin:6px 0}
+.cert .by{font-size:14px;color:#4A5480;margin-top:16px}
+textarea#jsonOut{width:100%;height:160px;font-family:Consolas,monospace;font-size:13px;margin-top:10px;border:2px solid #A7B2E6;border-radius:10px;padding:8px}
+.foot{text-align:center;color:#4A5480;font-size:14px;padding:26px 0 34px}
+#confetti{position:fixed;left:0;top:0;width:100%;height:100%;pointer-events:none;z-index:50}
+
+@media print{
+  body *{visibility:hidden}
+  #certBox,#certBox *{visibility:visible}
+  #certBox{position:absolute;left:0;top:0;width:100%;margin:0}
+}
+@media (prefers-reduced-motion:reduce){.bar div{transition:none}}
+</style>
+</head>
+<body>
+
+<div id="jsError">If you can read this box, the app did not load. Please open this page in Chrome or Safari (not inside Teams or email), then refresh.</div>
+
+<header class="hero">
+ <div class="wrap">
+  <div class="course">LSC 1503 Professional Spoken Communication, Unit 2 Interviews, Weeks 6 and 7</div>
+  <h1>Say it like a candidate.</h1>
+  <p class="sub">The key language for job interviews: your CV, your strengths, your soft skills, and the words employers listen for.</p>
+  <div class="room">
+   <p class="inst">Tap an interview question to hear a strong answer.</p>
+   <div id="qchips"></div>
+   <div class="answer" id="answer">Every answer below uses the key language from Weeks 6 and 7.</div>
+  </div>
+ </div>
+</header>
+
+<main class="wrap">
+
+<section id="scrStart">
+ <div class="card">
+  <h2>Before you start</h2>
+  <p>Write your name. It goes on your certificate and your results file.</p>
+  <div class="row">
+   <div class="field"><label for="stName">Full name</label><input id="stName" type="text" autocomplete="name"></div>
+   <div class="field"><label for="stId">Student ID</label><input id="stId" type="text"></div>
+  </div>
+  <p class="warn hidden" id="nameWarn">Please write your name first.</p>
+  <div class="row">
+   <button class="btn alt" id="goGloss">Study the words</button>
+   <button class="btn main" id="goQuiz">Start the quiz</button>
+  </div>
+  <div class="facts">
+   <span>25 questions</span><span>10 points each</span><span>A hint costs 5 points</span><span>200 points (80%) for a certificate</span>
+  </div>
+ </div>
+</section>
+
+<section id="scrGloss" class="hidden">
+ <div class="card">
+  <h2>Interview words glossary</h2>
+  <p>Tap a card for the meaning, a sentence you could use in your interview, and the Arabic.</p>
+  <div class="chips" id="chips"></div>
+  <div class="grid" id="grid"></div>
+  <div class="row"><button class="btn ghost" id="glossBack">Back</button><button class="btn main" id="glossQuiz">Start the quiz</button></div>
+ </div>
+</section>
+
+<section id="scrQuiz" class="hidden">
+ <div class="qtop">
+  <span class="pill" id="qNum">Question 1 of 25</span>
+  <span><span class="pill streak" id="streak">Streak 0</span> <span class="pill score" id="score">0 points</span></span>
+ </div>
+ <div class="bar"><div id="barFill"></div></div>
+ <div class="card">
+  <span class="cat" id="qCat"></span>
+  <p class="qtext" id="qText"></p>
+  <div id="opts"></div>
+  <div class="hintBox hidden" id="hintBox"></div>
+  <div id="fb"></div>
+  <p class="review hidden" id="reviewNote">You already answered this question. It is locked.</p>
+  <div class="nav">
+   <button class="btn ghost" id="prevBtn">Previous</button>
+   <button class="btn alt" id="hintBtn">Show a hint (&minus;5)</button>
+   <button class="btn main" id="nextBtn" disabled>Next</button>
+  </div>
+ </div>
+</section>
+
+<section id="scrRes" class="hidden">
+ <div class="card">
+  <h2 id="resTitle">Your results</h2>
+  <p class="big" id="resPct">0%</p>
+  <p id="resLine"></p>
+  <h2 style="margin-top:18px">Badges</h2>
+  <div class="badges" id="badges"></div>
+ </div>
+ <div class="cert hidden" id="certBox">
+  <h3>Certificate of Achievement</h3>
+  <p>This certifies that</p>
+  <div class="nm" id="certName"></div>
+  <p>completed the LSC 1503 Unit 2 quiz for Weeks 6 and 7:<br>Key Language for Interviews</p>
+  <p><b id="certScore"></b></p>
+  <p id="certDate"></p>
+  <p class="by">Designed by: Nazila Motahari</p>
+ </div>
+ <div class="card">
+  <div class="row">
+   <button class="btn main" id="dlBtn">Download my results</button>
+   <button class="btn alt hidden" id="printBtn">Print certificate</button>
+   <button class="btn ghost" id="reviewBtn">Review my answers</button>
+   <button class="btn ghost" id="retryBtn">Try again</button>
+  </div>
+  <div id="jsonWrap" class="hidden">
+   <p style="margin-top:12px;font-size:15px">If the download did not start, copy this text and send it to your teacher.</p>
+   <textarea id="jsonOut" readonly></textarea>
+  </div>
+ </div>
+</section>
+
+</main>
+<footer class="foot">Designed by: Nazila Motahari</footer>
+<canvas id="confetti"></canvas>
+
+<script>
+/* ============ DATA ============ */
+var ASKS = [
+ {q:"Can you describe your qualifications?",
+  a:"I have academic <b>qualifications</b> from HCT, and I am finishing my diploma in business this year."},
+ {q:"What are your strengths?",
+  a:"One of my <b>strengths</b> is <b>attention to detail</b>. In group projects, I am the person who checks the small things before we submit."},
+ {q:"What is one of your weaknesses?",
+  a:"Public speaking is a <b>weakness</b> of mine, because I get nervous. To improve, I practise my talk three times and use notes with key words only."},
+ {q:"Tell me about your experience of teamwork.",
+  a:"Every semester I work on group projects, so I have good <b>experience</b> of <b>teamwork</b>. I usually keep the team on target."},
+ {q:"How flexible are you?",
+  a:"I am <b>adaptable</b>. When our project plan changed last month, I moved to a new task the same day."},
+ {q:"What are your goals?",
+  a:"My first <b>goal</b> is to finish my diploma. After that, I want to develop my <b>technical proficiency</b> in a company like yours."}
+];
+
+var GROUPS = [
+ {k:"all", n:"All words"},
+ {k:"A", n:"Part A: interview basics"},
+ {k:"B", n:"Part B: describing yourself"}
+];
+
+var TERMS = [
+ {t:"Resume / Curriculum Vitae (CV)", p:"noun", g:"A", d:"A document with a summary of a person's career, qualifications and education.", s:"As you can see from my CV, I have experience in customer service.", ar:"السيرة الذاتية"},
+ {t:"Skills", p:"noun", g:"A", d:"The abilities and expertise you need to do a job well.", s:"At HCT, I have developed many skills, such as communication.", ar:"المهارات"},
+ {t:"Soft skills", p:"noun", g:"A", d:"Non-technical abilities that help you communicate, build relationships and look professional.", s:"My soft skills include communication and teamwork.", ar:"المهارات الشخصية (غير التقنية)"},
+ {t:"Experience", p:"noun", g:"A", d:"The knowledge or skill you get from doing tasks, jobs or activities over time.", s:"Every semester I take part in group projects. This has given me great experience in teamwork.", ar:"الخبرة"},
+ {t:"Integrity", p:"noun", g:"A", d:"Being honest and having strong moral values that you live by.", s:"I was not the team leader, but I was a valued member who checked all the data.", ar:"النزاهة / الأمانة"},
+ {t:"Qualification", p:"noun", g:"A", d:"An ability, degree or experience that makes you suitable for a job.", s:"I have academic qualifications from HCT.", ar:"المؤهلات"},
+ {t:"Strengths", p:"noun", g:"A", d:"Qualities of a person that are positive and useful.", s:"One of my strengths is my attention to detail.", ar:"نقاط القوة"},
+ {t:"Weakness", p:"noun", g:"A", d:"An area of a person that is less strong and needs improvement.", s:"Public speaking is a weakness of mine. However, I use strategies to stay calm.", ar:"نقاط الضعف"},
+ {t:"Achievement", p:"noun", g:"A", d:"Something you completed successfully.", s:"One of my biggest achievements was winning the college project award.", ar:"إنجاز"},
+ {t:"Goal", p:"noun", g:"A", d:"An objective or target that you aim to achieve.", s:"My main goal is to support your company and to develop my own skills.", ar:"هدف"},
+ {t:"Teamwork", p:"noun", g:"A", d:"People working together to reach a common goal or finish a task.", s:"In teamwork, I am excellent at checking details and keeping the team on target.", ar:"العمل الجماعي"},
+ {t:"Adaptability", p:"noun", g:"A", d:"The ability to adjust to new conditions or changes.", s:"My work needs a lot of adaptability, because the hours change every week.", ar:"القدرة على التكيف"},
+ {t:"Adaptable / Flexible", p:"adjective", g:"A", d:"Able to adjust to new conditions and challenges.", s:"I am highly adaptable and I can quickly adjust to new challenges.", ar:"متكيف / مرن"},
+ {t:"Professionalism", p:"noun", g:"A", d:"Behaviour and attitude at work that shows competence, reliability and respect.", s:"I am looking forward to developing my professionalism as I start my career.", ar:"الاحترافية"},
+ {t:"References", p:"noun", g:"A", d:"People who can confirm your qualifications and experience.", s:"My teacher has given me a reference.", ar:"المراجع (أشخاص يشهدون بمؤهلاتك وخبراتك)"},
+ {t:"Initiative", p:"noun", g:"B", d:"Willingness to take action and make decisions without being asked.", s:"I took the initiative and contacted staff on LinkedIn to ask about opportunities.", ar:"المبادرة (اتخاذ المبادرة)"},
+ {t:"Communication skills", p:"noun", g:"B", d:"The ability to give spoken or written information clearly.", s:"I am an excellent listener. I think carefully about what is said before I respond.", ar:"مهارات التواصل"},
+ {t:"Problem-solving", p:"noun", g:"B", d:"The ability to see problems and put effective solutions in place.", s:"My problem-solving skills helped the team finish the task after the software failed.", ar:"حل المشكلات"},
+ {t:"Time management", p:"noun", g:"B", d:"The ability to put tasks in order of importance and use your time well.", s:"I used to struggle with time management, but now I use a planner and a project timeline.", ar:"إدارة الوقت"},
+ {t:"Leadership", p:"noun", g:"B", d:"The ability to guide and motivate other people to reach goals.", s:"My leadership style is to coach and guide the team, not to stand at the front and give orders.", ar:"القيادة"},
+ {t:"Critical thinking", p:"noun", g:"B", d:"Analysing situations and making sensible judgments.", s:"I use critical thinking to look at a problem from different points of view.", ar:"التفكير النقدي"},
+ {t:"Attention to detail", p:"noun", g:"B", d:"Noticing and focusing on the small parts of a task or project.", s:"I have a keen attention to detail, so my work is accurate.", ar:"الاهتمام بالتفاصيل"},
+ {t:"Organization skills", p:"noun", g:"B", d:"The ability to arrange work and decide what comes first.", s:"My organization skills help me manage projects and deadlines well.", ar:"مهارات التنظيم"},
+ {t:"Technical proficiency", p:"noun", g:"B", d:"Knowledge and skill in the tools or technology the job needs.", s:"My knowledge of graphic design software makes me suitable for this job.", ar:"الكفاءة التقنية"},
+ {t:"Conflict resolution", p:"noun", g:"B", d:"Dealing with disagreements and solving them in a constructive way.", s:"In one group project, I found out what was wrong and helped everyone see the other views.", ar:"حل النزاعات"},
+ {t:"Reliable", p:"adjective", g:"B", d:"Dependable: you finish your tasks and keep your responsibilities.", s:"I am known for being reliable and always meeting deadlines.", ar:"جدير بالثقة / موثوق"},
+ {t:"Proactive", p:"adjective", g:"B", d:"Taking the initiative and making things happen, instead of waiting.", s:"I like to be proactive and think about problems before they happen.", ar:"استباقي"}
+];
+
+var CATS = {
+ cv:{n:"Your CV and background", badge:"CV Ready", ic:"📄"},
+ you:{n:"Describing yourself", badge:"Self-Aware", ic:"🪞"},
+ values:{n:"Professional qualities", badge:"Trusted Professional", ic:"🤍"},
+ team:{n:"Working with people", badge:"Team Player", ic:"🤝"},
+ work:{n:"Skills at work", badge:"Skills Pro", ic:"🛠️"}
+};
+
+var QS = [
+ {c:"cv", q:"Before the interview, the employer asks Hamda to send a document with her education, her work and her qualifications. What is this document?",
+  o:["A reference","A CV","An achievement","A goal"], a:1,
+  h:"The other name for this document is a resume.",
+  e:"A CV (curriculum vitae), or resume, is a summary of your career, qualifications and education."},
+ {c:"cv", q:"The interviewer says, \"Tell me about your qualifications.\" What should Mohammed talk about?",
+  o:["His hobbies at the weekend","His favourite subject at school in Grade 5","The salary he wants","His diploma and certificates that suit the job"], a:3,
+  h:"A qualification makes you suitable for a particular job.",
+  e:"A qualification is an ability, degree or experience that makes you suitable for the job, such as a diploma or a certificate."},
+ {c:"cv", q:"Aisha says, \"I worked in a shop for two summers, so I know how to deal with difficult customers.\" What is she describing?",
+  o:["Her experience","Her references","Her weakness","Her goal"], a:0,
+  h:"She got this knowledge by doing the job over time.",
+  e:"Experience is the knowledge or skill you gain by doing tasks, jobs or activities over time."},
+ {c:"cv", q:"Which of these are soft skills?",
+  o:["Using Excel and AutoCAD","Communication and teamwork","A diploma and a certificate","A CV and a cover letter"], a:1,
+  h:"Soft skills are not technical. They are about people.",
+  e:"Soft skills are non-technical abilities such as communication, teamwork and active listening. Excel and AutoCAD are technical skills."},
+ {c:"cv", q:"At the end of the interview, the employer asks Saeed for two references. Who should Saeed give?",
+  o:["Two friends from his football team","His brother and his cousin","A teacher and a work supervisor who know his work","Two websites about his field"], a:2,
+  h:"References are people who can confirm your qualifications and experience.",
+  e:"References are people who can vouch for you and confirm your qualifications and experience, such as a teacher or a supervisor."},
+
+ {c:"you", q:"\"I work well under pressure and I always check my work before I send it.\" Maryam is describing her ___.",
+  o:["weaknesses","references","strengths","goals"], a:2,
+  h:"These are positive and useful qualities.",
+  e:"Strengths are the qualities of a person that are positive and beneficial."},
+ {c:"you", q:"The interviewer asks about a weakness. Which is the best answer?",
+  o:["I have no weaknesses at all.","I am too much of a perfectionist, which is really a strength.","My time management was weak, so now I use a planner and I meet my deadlines.","I am always late, but everybody is late."], a:2,
+  h:"Talk about the area to improve and how you plan to improve it.",
+  e:"A good answer names a real weakness and says how you are improving it. Saying you have no weaknesses does not sound honest."},
+ {c:"you", q:"Latifa says, \"Last semester my team won the college innovation competition.\" What is she talking about?",
+  o:["An achievement","A qualification","A reference","A soft skill"], a:0,
+  h:"It is something she completed successfully.",
+  e:"An achievement is something accomplished successfully, such as winning an award or finishing a difficult project."},
+ {c:"you", q:"\"In five years, I want to lead a small engineering team.\" This sentence describes Khalid's ___.",
+  o:["experience","reference","weakness","goal"], a:3,
+  h:"It is a target he aims to reach.",
+  e:"A goal is an objective or target that a person aims to achieve."},
+ {c:"you", q:"Which answer best uses key language to describe yourself in an interview?",
+  o:["I am good, I think. My friends say I am nice.","One of my strengths is problem-solving. When our data was lost, I rebuilt the file in one day.","I am the best candidate and nobody can do this job better.","I do not really know. You can ask my teacher."], a:1,
+  h:"A strong answer names the quality and gives an example.",
+  e:"Name the quality, then give a short example. This shows the interviewer your strength instead of just claiming it."},
+
+ {c:"values", q:"Noora's friend tells her to add a job to her CV that she never did. Noora says no. What is Noora showing?",
+  o:["Adaptability","Integrity","Leadership","Initiative"], a:1,
+  h:"It is about being honest and keeping strong moral values.",
+  e:"Integrity is being honest and living by strong moral values. Adding false information to a CV shows a lack of integrity."},
+ {c:"values", q:"Which behaviour best shows professionalism in an interview?",
+  o:["Arriving on time, dressing smartly and speaking respectfully","Answering a phone call in the middle of the interview","Talking about how bad your last teacher was","Arriving early and asking for a coffee"], a:0,
+  h:"Professionalism is behaviour that shows competence, reliability and respect.",
+  e:"Professionalism is the behaviour and attitude at work that shows competence, reliability and respect."},
+ {c:"values", q:"Two days before the event, Obaid's manager changes the whole plan. Obaid says, \"No problem,\" and starts the new task the same day. Which word describes him?",
+  o:["Distracted","Reliable","Adaptable","Technical"], a:2,
+  h:"He adjusts quickly to new conditions.",
+  e:"Adaptable (or flexible) means able to adjust to new conditions and challenges. The noun is adaptability."},
+ {c:"values", q:"Sara always finishes her tasks and never misses a deadline. Her team can depend on her. Sara is ___.",
+  o:["reliable","proactive","flexible","critical"], a:0,
+  h:"Her team can depend on her.",
+  e:"Reliable means dependable in completing your tasks and responsibilities."},
+ {c:"values", q:"Nobody asked Shamma to do it, but she saw that the group had no timeline, so she made one and shared it. What is Shamma showing?",
+  o:["Attention to detail","Conflict resolution","Time management","Taking the initiative"], a:3,
+  h:"She acted without being asked. A person like this is also called proactive.",
+  e:"Initiative is the willingness to take action and make decisions without being asked. A person who does this is proactive."},
+
+ {c:"team", q:"Ahmed says, \"In group projects I listen to everyone, I share my ideas clearly, and we agree on a plan together.\" Which word fits best?",
+  o:["Teamwork","Technical proficiency","Qualification","Achievement"], a:0,
+  h:"It is a group working towards a common goal.",
+  e:"Teamwork is a group of people working together to achieve a common goal or complete a task."},
+ {c:"team", q:"Two students in a group stop speaking to each other. Fatima talks to both of them, finds the real problem and helps them agree. What is this skill?",
+  o:["Time management","Conflict resolution","Critical thinking","Adaptability"], a:1,
+  h:"She solved a disagreement in a constructive way.",
+  e:"Conflict resolution is the ability to address and resolve disagreements or disputes constructively."},
+ {c:"team", q:"Rashid does not give orders. He guides his group, explains the goal, and keeps everyone motivated. What is he showing?",
+  o:["Leadership","Passive listening","Professionalism","Organization skills"], a:0,
+  h:"He guides and motivates the team.",
+  e:"Leadership is the capability to guide and motivate others to achieve goals. Not all leaders give orders: many coach the team."},
+ {c:"team", q:"An employer says, \"We need someone with strong communication skills.\" What is the employer asking for?",
+  o:["Someone who can repair the computers","Someone who can give and understand information clearly","Someone who works alone quietly all day","Someone who has a long CV"], a:1,
+  h:"It is about giving and receiving information, spoken or written.",
+  e:"Communication skills are the ability to convey spoken or written information effectively, and to listen well."},
+ {c:"team", q:"In an interview, which answer shows teamwork best?",
+  o:["I did the whole project alone, because my group was slow.","I prefer to work alone, so I finish faster.","I let my group do the work and I presented it.","I usually check the details and keep the team on target."], a:3,
+  h:"Good teamwork means naming your real role in the group.",
+  e:"You do not have to be the leader. Naming your role, such as checking details and keeping the team on target, shows real teamwork."},
+
+ {c:"work", q:"The printer fails one hour before the deadline. Hessa finds another print shop and delivers the report on time. Which skill is this?",
+  o:["Problem-solving","Integrity","Leadership","Professionalism"], a:0,
+  h:"She saw the problem and put a solution in place.",
+  e:"Problem-solving is the ability to identify issues and implement effective solutions."},
+ {c:"work", q:"Majid has three assignments and a part-time job. He plans his week, does the most important task first, and finishes everything. What is he good at?",
+  o:["Critical thinking","Time management","Adaptability","Conflict resolution"], a:1,
+  h:"It is about prioritising tasks and using time well.",
+  e:"Time management is the ability to prioritize tasks and manage your time efficiently."},
+ {c:"work", q:"Before choosing a supplier, Salama compares the prices, checks the reviews and looks for problems in the contract. Which skill is she using?",
+  o:["Technical proficiency","Attention to detail only","Critical thinking","Initiative"], a:2,
+  h:"She is analysing the situation and making a rational judgment.",
+  e:"Critical thinking is the skill of analysing situations and making rational judgments before deciding."},
+ {c:"work", q:"Jassim notices a small mistake in one number on a 40-page report, and he fixes it before the meeting. What is this?",
+  o:["Attention to detail","Adaptability","Teamwork","A reference"], a:0,
+  h:"He noticed a very small part of a big task.",
+  e:"Attention to detail is the ability to notice and focus on the small aspects of a project, so the work is accurate."},
+ {c:"work", q:"The job advert asks for technical proficiency in AutoCAD. What should Mariam say in the interview?",
+  o:["I am a hard worker and very friendly with everyone.","I can learn anything very quickly, no problem.","I have good soft skills such as teamwork.","I have used AutoCAD for two years in my design projects."], a:3,
+  h:"Technical proficiency is about the specific tools or technology the job needs.",
+  e:"Technical proficiency is knowledge and skill in specific tools or technologies for the job. Give the tool and how long you have used it."}
+];
+
+/* ============ HELPERS (ES5) ============ */
+function $(id){return document.getElementById(id);}
+function show(el){el.className=el.className.replace(/\s*hidden/g,"");}
+function hide(el){if(!/(^|\s)hidden(\s|$)/.test(el.className)){el.className=(el.className+" hidden").replace(/^\s+/,"");}}
+function esc(s){return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");}
+function screen(id){
+ var all=["scrStart","scrGloss","scrQuiz","scrRes"],i;
+ for(i=0;i<all.length;i++){ if(all[i]===id){show($(all[i]));}else{hide($(all[i]));} }
+ try{window.scrollTo(0,0);}catch(e){}
+}
+var LETTERS=["A","B","C","D"];
+
+/* ============ HERO ============ */
+function buildAsks(){
+ var html="",i;
+ for(i=0;i<ASKS.length;i++){html+='<button class="qchip" data-i="'+i+'">'+esc(ASKS[i].q)+'</button> ';}
+ $("qchips").innerHTML=html;
+ var b=$("qchips").getElementsByTagName("button"),j;
+ for(j=0;j<b.length;j++){
+  b[j].onclick=function(){
+   var k=parseInt(this.getAttribute("data-i"),10),m;
+   for(m=0;m<b.length;m++){b[m].className="qchip";}
+   this.className="qchip on";
+   $("answer").innerHTML='<span class="who">A strong answer</span>'+ASKS[k].a;
+  };
+ }
+}
+
+/* ============ GLOSSARY ============ */
+var curGroup="all";
+function buildChips(){
+ var html="",i;
+ for(i=0;i<GROUPS.length;i++){html+='<button class="chip'+(GROUPS[i].k===curGroup?" on":"")+'" data-k="'+GROUPS[i].k+'">'+esc(GROUPS[i].n)+'</button>';}
+ $("chips").innerHTML=html;
+ var b=$("chips").getElementsByTagName("button"),j;
+ for(j=0;j<b.length;j++){b[j].onclick=function(){curGroup=this.getAttribute("data-k");buildChips();buildGrid();};}
+}
+function cardFront(t){
+ return '<span class="wk">Part '+esc(t.g)+'</span><span class="term">'+esc(t.t)+'</span><span class="pos">'+esc(t.p)+'</span><span class="tapNote">Tap to see the meaning</span>';
+}
+function cardBack(t){
+ return '<span class="term" style="font-size:17px;margin-bottom:6px">'+esc(t.t)+'</span><span class="def">'+esc(t.d)+'</span><span class="say"><i>You could say:</i>'+esc(t.s)+'</span><span class="ar">'+esc(t.ar)+'</span>';
+}
+function buildGrid(){
+ var html="",i;
+ for(i=0;i<TERMS.length;i++){
+  if(curGroup!=="all" && TERMS[i].g!==curGroup){continue;}
+  html+='<div class="fc"><button class="fcIn front" data-i="'+i+'" data-s="f">'+cardFront(TERMS[i])+'</button></div>';
+ }
+ $("grid").innerHTML=html;
+ var b=$("grid").getElementsByTagName("button"),j;
+ for(j=0;j<b.length;j++){
+  b[j].onclick=function(){
+   var t=TERMS[parseInt(this.getAttribute("data-i"),10)];
+   if(this.getAttribute("data-s")==="f"){this.setAttribute("data-s","b");this.className="fcIn back";this.innerHTML=cardBack(t);}
+   else{this.setAttribute("data-s","f");this.className="fcIn front";this.innerHTML=cardFront(t);}
+  };
+ }
+}
+
+/* ============ QUIZ ============ */
+var cur=0, answers=[], streak=0, bestStreak=0, reviewMode=false;
+
+var RUN=[];
+function shuffle(a){var i,j,t;for(i=a.length-1;i>0;i--){j=Math.floor(Math.random()*(i+1));t=a[i];a[i]=a[j];a[j]=t;}return a;}
+function buildRun(){
+ var idx=[],i,k,ord,q,o,ans;
+ for(i=0;i<QS.length;i++){idx.push(i);}
+ shuffle(idx);
+ RUN=[];
+ for(i=0;i<idx.length;i++){
+  q=QS[idx[i]];
+  ord=[];for(k=0;k<q.o.length;k++){ord.push(k);}
+  shuffle(ord);
+  o=[];ans=0;
+  for(k=0;k<ord.length;k++){o.push(q.o[ord[k]]);if(ord[k]===q.a){ans=k;}}
+  RUN.push({c:q.c,q:q.q,o:o,a:ans,h:q.h,e:q.e});
+ }
+}
+
+function resetQuiz(){
+ buildRun();
+ cur=0;answers=[];streak=0;bestStreak=0;reviewMode=false;
+ for(var i=0;i<RUN.length;i++){answers.push({sel:-1,hint:false,pts:0,ok:false});}
+}
+function totalScore(){var s=0,i;for(i=0;i<answers.length;i++){s+=answers[i].pts;}return s;}
+function answeredCount(){var n=0,i;for(i=0;i<answers.length;i++){if(answers[i].sel>-1){n++;}}return n;}
+function firstUnanswered(){for(var i=0;i<answers.length;i++){if(answers[i].sel<0){return i;}}return answers.length;}
+
+function renderQ(){
+ var q=RUN[cur], a=answers[cur], done=a.sel>-1, i, j;
+ $("qNum").innerHTML="Question "+(cur+1)+" of "+RUN.length;
+ $("score").innerHTML=totalScore()+" points";
+ $("streak").innerHTML="Streak "+streak;
+ $("barFill").style.width=Math.round(answeredCount()/RUN.length*100)+"%";
+ $("qCat").className="cat c-"+q.c;
+ $("qCat").innerHTML=esc(CATS[q.c].n);
+ $("qText").innerHTML=esc(q.q);
+ var html="";
+ for(i=0;i<q.o.length;i++){
+  var cls="opt";
+  if(done){cls+=" locked"; if(i===q.a){cls+=" right";} else if(i===a.sel){cls+=" wrong";}}
+  html+='<button class="'+cls+'" data-i="'+i+'"'+(done?' disabled':'')+'><span class="let">'+LETTERS[i]+'</span>'+esc(q.o[i])+'</button>';
+ }
+ $("opts").innerHTML=html;
+ var b=$("opts").getElementsByTagName("button");
+ for(j=0;j<b.length;j++){b[j].onclick=function(){choose(parseInt(this.getAttribute("data-i"),10));};}
+ if(a.hint){$("hintBox").innerHTML="<b>Hint:</b> "+esc(q.h);show($("hintBox"));}else{hide($("hintBox"));}
+ $("hintBtn").disabled=(done||a.hint);
+ if(done){
+  $("fb").innerHTML='<div class="fb '+(a.ok?"good":"bad")+'"><b>'+(a.ok?"Correct! +"+a.pts+" points. ":"Not this time. The answer is "+LETTERS[q.a]+". ")+'</b>'+esc(q.e)+'</div>';
+ }else{$("fb").innerHTML="";}
+ if(done && (reviewMode || cur<firstUnanswered())){show($("reviewNote"));}else{hide($("reviewNote"));}
+ $("prevBtn").disabled=(cur===0);
+ $("nextBtn").disabled=!done;
+ $("nextBtn").innerHTML=(cur===RUN.length-1)?(reviewMode?"Back to results":"See my results"):"Next";
+}
+function choose(i){
+ var a=answers[cur]; if(a.sel>-1){return;}
+ a.sel=i; a.ok=(i===RUN[cur].a);
+ if(a.ok){a.pts=a.hint?5:10;streak++;if(streak>bestStreak){bestStreak=streak;}}else{a.pts=0;streak=0;}
+ renderQ();
+}
+function useHint(){var a=answers[cur];if(a.sel>-1||a.hint){return;}a.hint=true;renderQ();}
+function nextQ(){
+ if(answers[cur].sel<0){return;}
+ if(cur<RUN.length-1){cur++;renderQ();}else{showResults();}
+}
+function prevQ(){if(cur>0){cur--;renderQ();}}
+
+/* ============ RESULTS ============ */
+var PASS=200;
+function catStats(){
+ var s={},k,i;
+ for(k in CATS){if(CATS.hasOwnProperty(k)){s[k]={n:0,ok:0};}}
+ for(i=0;i<RUN.length;i++){s[RUN[i].c].n++; if(answers[i].ok){s[RUN[i].c].ok++;}}
+ return s;
+}
+function earnedBadges(){
+ var s=catStats(), out=[], k, i, noHint=true;
+ for(k in CATS){if(CATS.hasOwnProperty(k) && s[k].ok===s[k].n){out.push(CATS[k].badge);}}
+ if(bestStreak>=5){out.push("On a Roll");}
+ for(i=0;i<answers.length;i++){if(answers[i].hint){noHint=false;}}
+ if(noHint && totalScore()>=PASS){out.push("No Hints Needed");}
+ return out;
+}
+function showResults(){
+ reviewMode=true;
+ var sc=totalScore(), max=RUN.length*10, pct=Math.round(sc/max*100), pass=sc>=PASS, k, i, right=0;
+ var name=$("stName").value.replace(/^\s+|\s+$/g,"");
+ $("resTitle").innerHTML=pass?"Well done, "+esc(name)+"!":"Good effort, "+esc(name)+".";
+ $("resPct").innerHTML=pct+"%";
+ for(i=0;i<answers.length;i++){if(answers[i].ok){right++;}}
+ $("resLine").innerHTML="You scored <b>"+sc+" out of "+max+"</b> points and answered "+right+" of "+RUN.length+" questions correctly. "+(pass?"You earned your certificate.":"You need 200 points for the certificate. Study the glossary and try again.");
+ var s=catStats(), html="";
+ for(k in CATS){ if(CATS.hasOwnProperty(k)){
+  var has=s[k].ok===s[k].n;
+  html+='<div class="badge"><div class="bIn'+(has?" got":"")+'"><span class="ic">'+CATS[k].ic+'</span><b>'+CATS[k].badge+'</b><small>'+esc(CATS[k].n)+': '+s[k].ok+'/'+s[k].n+'</small></div></div>';
+ }}
+ html+='<div class="badge"><div class="bIn'+(bestStreak>=5?" got":"")+'"><span class="ic">🔥</span><b>On a Roll</b><small>5 correct in a row (best: '+bestStreak+')</small></div></div>';
+ $("badges").innerHTML=html;
+ if(pass){
+  $("certName").innerHTML=esc(name);
+  $("certScore").innerHTML="Score: "+sc+"/"+max+" ("+pct+"%)";
+  $("certDate").innerHTML=new Date().toDateString();
+  show($("certBox"));show($("printBtn"));
+ }else{hide($("certBox"));hide($("printBtn"));}
+ hide($("jsonWrap"));
+ screen("scrRes");
+ if(pass){confetti();}
+}
+function resultJSON(){
+ var sc=totalScore(), max=RUN.length*10, list=[], i;
+ for(i=0;i<RUN.length;i++){
+  list.push({question:i+1, category:CATS[RUN[i].c].n, chosen:answers[i].sel>-1?RUN[i].o[answers[i].sel]:"", correctAnswer:RUN[i].o[RUN[i].a], correct:answers[i].ok, hintUsed:answers[i].hint, points:answers[i].pts});
+ }
+ return JSON.stringify({
+  app:"LSC 1503 Unit 2 Key Language Weeks 6-7: Interviews",
+  student:$("stName").value, studentId:$("stId").value, date:new Date().toString(),
+  score:sc, maxScore:max, percent:Math.round(sc/max*100), passed:sc>=PASS,
+  bestStreak:bestStreak, badges:earnedBadges(), answers:list
+ },null,2);
+}
+function download(){
+ var txt=resultJSON();
+ $("jsonOut").value=txt; show($("jsonWrap"));
+ var nm=($("stName").value||"student").replace(/[^A-Za-z0-9]+/g,"_"), fn="LSC1503_Wk6-7_"+nm+".json";
+ if(DL){ DL.save({filename:fn, data:txt})["catch"](function(){}); return; }
+ try{
+  var blob=new Blob([txt],{type:"application/json"});
+  if(window.navigator && window.navigator.msSaveOrOpenBlob){window.navigator.msSaveOrOpenBlob(blob,fn);return;}
+  var url=URL.createObjectURL(blob), a=document.createElement("a");
+  a.href=url;a.download=fn;document.body.appendChild(a);a.click();
+  setTimeout(function(){document.body.removeChild(a);URL.revokeObjectURL(url);},500);
+ }catch(e){}
+}
+var DL=null;
+try{ if(window.claude && window.claude.use){ window.claude.use("downloads").then(function(d){DL=d;},function(){}); } }catch(e){}
+
+/* ============ CONFETTI ============ */
+function confetti(){
+ var cv=$("confetti"); if(!cv.getContext){return;}
+ try{ if(window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches){return;} }catch(e){}
+ var ctx=cv.getContext("2d"), W=cv.width=window.innerWidth, H=cv.height=window.innerHeight;
+ var cols=["#12B3BF","#2A3480","#E09B3D","#5A4BB8","#2E7D5B"], p=[], i;
+ for(i=0;i<140;i++){p.push({x:Math.random()*W,y:-Math.random()*H,s:5+Math.random()*7,v:2+Math.random()*4,d:Math.random()*2-1,c:cols[i%cols.length],r:Math.random()*6});}
+ var t=0, raf=window.requestAnimationFrame||function(f){return setTimeout(f,16);};
+ function step(){
+  ctx.clearRect(0,0,W,H);
+  for(var k=0;k<p.length;k++){var o=p[k];o.y+=o.v;o.x+=o.d;o.r+=0.1;ctx.fillStyle=o.c;ctx.save();ctx.translate(o.x,o.y);ctx.rotate(o.r);ctx.fillRect(-o.s/2,-o.s/2,o.s,o.s*0.6);ctx.restore();}
+  t++; if(t<220){raf(step);}else{ctx.clearRect(0,0,W,H);}
+ }
+ step();
+}
+
+/* ============ WIRING ============ */
+function needName(){
+ if(!$("stName").value.replace(/\s+/g,"")){show($("nameWarn"));$("stName").focus();return true;}
+ hide($("nameWarn"));return false;
+}
+function startQuiz(){if(needName()){screen("scrStart");return;}resetQuiz();renderQ();screen("scrQuiz");}
+
+$("goGloss").onclick=function(){screen("scrGloss");};
+$("glossBack").onclick=function(){screen("scrStart");};
+$("goQuiz").onclick=startQuiz;
+$("glossQuiz").onclick=startQuiz;
+$("hintBtn").onclick=useHint;
+$("nextBtn").onclick=nextQ;
+$("prevBtn").onclick=prevQ;
+$("dlBtn").onclick=download;
+$("printBtn").onclick=function(){window.print();};
+$("reviewBtn").onclick=function(){cur=0;renderQ();screen("scrQuiz");};
+$("retryBtn").onclick=function(){hide($("certBox"));startQuiz();};
+
+buildAsks();buildChips();buildGrid();resetQuiz();
+$("jsError").style.display="none";
+window.onerror=function(){$("jsError").style.display="block";};
+</script>
+</body>
+</html>
